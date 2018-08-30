@@ -107,4 +107,10 @@
       </plugin>
     </plugins>
   </build>
+	<distributionManagement>
+  <repository>
+    <id>MyDemoRepo</id>
+    <url>http://localhost:8081/nexus/content/repositories/MyDemoRepo</url>
+  </repository>
+</distributionManagement>
 </project>
