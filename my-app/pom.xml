@@ -58,18 +58,41 @@
 	</configuration>
       </plugin>
 	    
+	   
+	    
+	    
 	    <plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.1</version>
-				<extensions>true</extensions>
-				<configuration>
-				<!-- The Base URL of Nexus instance where we want to stage -->
-					<nexusUrl>http://localhost:8081/nexus/</nexusUrl>
-					<!-- The server "id" element from settings to use authentication from -->
-					<serverId>Nexus2<serverId>
-				</configuration>
-			</plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>default-deploy</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <serverId>Nexus2</serverId>
+          <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+          <!-- Profile Id override profile matching -->
+          <!--stagingProfileId></stagingProfileId-->
+          <!-- By having none of those above, we actually use Staging V2 in "auto" mode, profile will be matched server side -->
+          <!-- Tags -->
+          <tags>
+            <localUsername>${env.USER}</localUsername>
+            <javaVersion>${java.version}</javaVersion>
+          </tags>
+        </configuration>
+      </plugin>
+	    
+	    
+	    
+	    
+	    
+	    
 	    
 	    
       <plugin>
